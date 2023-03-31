@@ -36,8 +36,7 @@ public class CreateHealthActivity extends AppCompatActivity {
     FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     Button create;
     TextView note;
-    TextInputLayout cblood, cdiabeteshist, cstagediabetes, chbphist, cstagehbp, cdia, cmed, callerg, csleep, Rbmi;
-    //ProgressBar cprogress;
+    TextInputLayout cblood, cdiabeteshist, current_diabetes, cstagediabetes, chbphist, cstagehbp, callerg, csleep, Rbmi;
 
 
     @SuppressLint("MissingInflatedId")
@@ -50,14 +49,14 @@ public class CreateHealthActivity extends AppCompatActivity {
         create = (Button) findViewById(R.id.createhealth);
         cblood = (TextInputLayout) findViewById(R.id.cblood);
         cdiabeteshist = (TextInputLayout) findViewById(R.id.cdiabeteshist);
+        current_diabetes = (TextInputLayout) findViewById(R.id.current_diabetes);
         cstagediabetes = (TextInputLayout) findViewById(R.id.cstagediabetes);
         chbphist = (TextInputLayout) findViewById(R.id.chbphist);
         cstagehbp = (TextInputLayout) findViewById(R.id.cstagehbp);
-        cdia = (TextInputLayout) findViewById(R.id.cdiagnosis);
-        cmed = (TextInputLayout) findViewById(R.id.cmed);
+        //cdia = (TextInputLayout) findViewById(R.id.cdiagnosis);
+        //cmed = (TextInputLayout) findViewById(R.id.cmed);
         callerg = (TextInputLayout) findViewById(R.id.callergies);
         csleep = (TextInputLayout) findViewById(R.id.csleep);
-        //cprogress = findViewById(R.id.cprogress);
 
         // for thr first time with no entry
         CollectionReference documentReference = fStore.collection("Patients").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Health_Data");
@@ -74,30 +73,30 @@ public class CreateHealthActivity extends AppCompatActivity {
                             // Get the data from the document and assign it to the relevant fields
                             String bloodType = document.getString("Blood");
                             String diabetesHistory = document.getString("Diabetes History");
+                            String currentDiabetes = document.getString("Current Diabetes");
                             String diabetesStage = document.getString("Diabetes Stage");
                             String hbpHistory = document.getString("High Blood Pressure History");
                             String hbpStage = document.getString("High Blood Pressure Stage");
-                            String diagnosis = document.getString("Diagnosis");
-                            String medication = document.getString("Medication");
+                            //String diagnosis = document.getString("Diagnosis");
+                            //String medication = document.getString("Medication");
                             String allergies = document.getString("Allergies");
                             String sleepHours = document.getString("Sleep Hours");
 
                             // Set the text of the relevant TextViews or EditTexts to the retrieved data
                             cblood.getEditText().setText(bloodType);
                             cdiabeteshist.getEditText().setText(diabetesHistory);
+                            current_diabetes.getEditText().setText(currentDiabetes);
                             cstagediabetes.getEditText().setText(diabetesStage);
                             chbphist.getEditText().setText(hbpHistory);
                             cstagehbp.getEditText().setText(hbpStage);
-                            cdia.getEditText().setText(diagnosis);
-                            cmed.getEditText().setText(medication);
+                            //cdia.getEditText().setText(diagnosis);
+                            //cmed.getEditText().setText(medication);
                             callerg.getEditText().setText(allergies);
                             csleep.getEditText().setText(sleepHours);
                         }
                     }
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.getException());
-
-
                 }
             }
 
@@ -109,11 +108,12 @@ public class CreateHealthActivity extends AppCompatActivity {
 
                 final String userBlood = cblood.getEditText().getText().toString().toUpperCase();
                 final String userhistdiabetes = cdiabeteshist.getEditText().getText().toString();
+                final String current_Diabetes = current_diabetes.getEditText().getText().toString();
                 final String userstagediabetes = cstagediabetes.getEditText().getText().toString();
                 final String userhisthbp = chbphist.getEditText().getText().toString();
                 final String userstagehbp = cstagehbp.getEditText().getText().toString();
-                final String userDia = cdia.getEditText().getText().toString();
-                final String userMed = cmed.getEditText().getText().toString();
+                //final String userDia = cdia.getEditText().getText().toString();
+                //final String userMed = cmed.getEditText().getText().toString();
                 final String userAllerg = callerg.getEditText().getText().toString();
                 final String userSleep = csleep.getEditText().getText().toString();
 
@@ -123,25 +123,24 @@ public class CreateHealthActivity extends AppCompatActivity {
                 Map<String, Object> health = new HashMap<>();
                 health.put("Blood", userBlood + "ve");
                 health.put("Diabetes History", userhistdiabetes);
+                health.put("Current Diabetes", current_Diabetes);
                 health.put("Diabetes Stage", userstagediabetes);
                 health.put("High Blood Pressure History", userhisthbp);
                 health.put("High Blood Pressure Stage", userstagehbp);
-                health.put("Diagnosis", userDia);
-                health.put("Medication", userMed);
+                //health.put("Diagnosis", userDia);
+                //health.put("Medication", userMed);
                 health.put("Allergies", userAllerg);
                 health.put("Sleep Hours", userSleep + " hours");
                 health.put("Created Date", new Date());
                 documentReference.set(health).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(getApplicationContext(), "Created My health! ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Created My health!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(CreateHealthActivity.this, MainPage.class));
                         finish();
                     }
                 });
             }
-
-
         });
     }
 }

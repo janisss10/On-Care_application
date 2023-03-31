@@ -15,12 +15,24 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/Heading"
+            android:textSize="17sp"
+            android:textColor="#800000"
+            android:textStyle="bold"
+            android:text="Initial Health Background Upon Registration"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/note"
             android:textSize="15dp"
-            android:textColor="#000000"
+            android:textColor="#800000"
             android:text="Please Note: No changes are allowed once saving the record"
             android:layout_marginBottom="10dp"
             ></TextView>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +54,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="History of Diabetes (YES/NO)"
+            android:hint="Family History of Diabetes (YES/NO)"
             android:id="@+id/cdiabeteshist"
             android:layout_marginBottom="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -56,6 +68,24 @@
                 android:drawablePadding="10dp"
                 />
 
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Have diabetes currently?"
+            android:id="@+id/current_diabetes"
+            android:layout_marginBottom="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:drawableLeft="@drawable/ic_favorite_border_black_24dp"
+                android:drawablePadding="10dp"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +130,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="If yes, which type of BP. (High/Low)?"
+            android:hint="If yes, what type of BP (High/Low)?"
             android:id="@+id/cstagehbp"
             android:layout_marginBottom="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -117,46 +147,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Diagnosis"
-            android:id="@+id/cdiagnosis"
-            android:layout_marginBottom="10dp"            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_favorite_border_black_24dp"
-                android:drawablePadding="10dp"
-                android:inputType="text"
-                />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Medication"
-            android:id="@+id/cmed"
-            android:layout_marginBottom="10dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_favorite_border_black_24dp"
-                android:drawablePadding="10dp"
-                android:inputType="text"
-                />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

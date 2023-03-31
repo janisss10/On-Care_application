@@ -121,6 +121,9 @@ public class BMI extends AppCompatActivity {
                 {
                     Toast.makeText(getApplicationContext(),"Adjust to your weight first",Toast.LENGTH_SHORT).show();
                 }
+                else if(age.isEmpty()){
+                    Toast.makeText(getApplicationContext(),"Please enter your age",Toast.LENGTH_SHORT).show();
+                }
                 else {
                     Intent intent = new Intent(BMI.this, BMI2.class);
                     intent.putExtra("gender", typerofuser);
